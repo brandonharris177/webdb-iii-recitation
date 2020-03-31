@@ -26,4 +26,19 @@ router.get('/:id', (req, res) => {
     })
 });
 
+router.get('/:id/pets', (req, res) => {
+  const id = req.params.id
+  Owners.getByOwner(id)
+    .then(owner => {
+      if (owner) {
+        res.status(200).json(owner)
+      } else {
+        res.status(404).json("Owner with given Id does not exist")
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error)
+    })
+});
+
 module.exports = router

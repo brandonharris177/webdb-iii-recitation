@@ -10,4 +10,9 @@ server.use('/owners', ownersRouter);
 const petsRouter = require('./pets/pets-router.js');
 server.use('/pets', petsRouter);
 
+server.get('/', (req, res) => {
+        res.status(200).json("api is up");
+});
+  
+
 module.exports = server;

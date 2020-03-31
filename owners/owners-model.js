@@ -2,7 +2,8 @@ const db = require('../data/db')
 
 module.exports = {
   get,
-  getById
+  getById,
+  getByOwner
 }
 
 function get() {
@@ -11,4 +12,14 @@ function get() {
 
 function getById(id) {
   return db('owners').where({id}).first()
+}
+
+function getByOwner(id) {
+  return get()
+  .select([
+    'owners.name AS owners_name',
+    'pets.name AS pet_name'
+  ])
+  .join('pets', 'pets.owner_id', 'owners.id')
+  .where({ "owners.id": id })
 }

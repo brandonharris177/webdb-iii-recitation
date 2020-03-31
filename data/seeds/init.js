@@ -14,9 +14,9 @@ exports.seed = function(knex) {
     })
     .then(() => {
       return knex('species').insert([
-        {id: 1, specie: "Dog"},
-        {id: 2, specie: "Cat"},
-        {id: 3, specie: "Parrot"},
+        {id: 1, species: "Dog"},
+        {id: 2, species: "Cat"},
+        {id: 3, species: "Parrot"},
       ]);
     })
     .then(() => {

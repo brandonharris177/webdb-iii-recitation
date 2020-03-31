@@ -19,5 +19,5 @@ function get() {
 }
 
 function getById(id) {
-  return db("pets").where({id}).first();
+  return get().where({ "pets.id": id }).first();
 }
