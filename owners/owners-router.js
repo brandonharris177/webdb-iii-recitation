@@ -30,6 +30,7 @@ router.get('/:id/pets', (req, res) => {
   const id = req.params.id
   Owners.getByOwner(id)
     .then(owner => {
+      console.log(owner)
       if (owner) {
         res.status(200).json(owner)
       } else {
