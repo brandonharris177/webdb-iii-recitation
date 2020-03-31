@@ -14,7 +14,7 @@ exports.up = function(knex) {
     .createTable('species', tbl => {
       tbl.increments();
       tbl
-        .string('specie')
+        .string('species')
         .notNullable()
         .unique();
     })

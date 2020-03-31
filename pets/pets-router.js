@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const Pets = require('./pets-model.js');
-const restrict = require('../middleware/restrict.js');
 
-router.get('/', restrict, (req, res) => {
+router.get('/', (req, res) => {
   Pets.get()
     .then(pets => {
       res.status(200).json(pets);
@@ -16,7 +15,7 @@ router.get('/:id', (req, res) => {
       if (pet) {
         res.status(200).json(pet);
       } else {
-        res.status(404).end();
+        res.status(404).json("pet with given Id does not exist");
       }
     });
 });
