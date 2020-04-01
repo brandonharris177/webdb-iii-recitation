@@ -13,10 +13,8 @@ function get() {
 function getById(id) {
   return db('owners').where({id}).first()
     .then(owner => {
-      // console.log(owner)
-      getByOwner(owner.id)
+      return getByOwner(owner.id)
         .then(pets => {
-          console.log({...owner, pets: pets})
           return {...owner, pets: pets}
         })
     })
