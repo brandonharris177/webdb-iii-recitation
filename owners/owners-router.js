@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Owners = require('./owners-model')
+const Pets = require('../pets/pets-model')
 
 router.get('/', (req, res) => {
   Owners.get()
@@ -39,6 +40,23 @@ router.get('/:id/pets', (req, res) => {
     })
     .catch(error => {
       res.status(500).json(error)
+    })
+});
+
+router.post('/', (req, res) => {
+  const {name, email} = req.body
+  Owners.insert({name, email})
+    .then(owner => {
+      res.status(201).json(owner)
+    })
+})
+
+router.post('/:id/pets', (req, res) => {
+  const id = req.params.id
+  const {name, age, care_instructions, species_id} = req.body
+  Pets.insert({name, age, care_instructions, species_id, owner_id: parseInt(id, 10)})
+    .then(pets => {
+      res.status(201).json(pets)
     })
 });
 
